@@ -1,6 +1,6 @@
 """
 A  file that opens and resizes images from the specified directory. It then performs rotation, translation, and scaling on the images. It then saves the images
-into a single file in the current directory.
+into a single file in the current directory. At the end an optional piece of code displays part of the new image set.
 """
 import os
 from PIL import Image
@@ -71,7 +71,8 @@ def multiple_resize(images_path, size):
         Carries out the following transformations on the image:
         1. Rotate the image by 90 degrees
         2. Translate the image by -100 and 100 pixels
-        3. Scale the image by 0.5 and 2.0
+        3. Rotate the image by 45 degrees
+        4. Scale the image x times
         Adds the transformed images to the list of images
         """
         for i in range(4):
@@ -97,8 +98,10 @@ def multiple_resize(images_path, size):
 
     save(training_data, 'dataset_multiplied_ch1.npy')
 
+# Run the actual resizing
 multiple_resize(images_path, size)
 
+# Optional Dataset visualisation
 X_train = np.load('dataset_multiplied_ch1.npy')
 print(len(X_train))
 i = 100
